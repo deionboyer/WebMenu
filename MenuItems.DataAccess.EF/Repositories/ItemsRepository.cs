@@ -56,6 +56,12 @@ namespace MenuItems.DataAccess.EF.Repositories
             List<Items> menuList = new List<Items>();
             return menuList;
         }
+        public List<Cart> AddToCart(int id)
+        {
+            List<Cart> cartList = new List<Cart>();
+            return cartList;
+        }
+        
         /*Need "Add To Cart Button' Find how to create a method that returns a filters list using a linq. 
           Will Return GetAllDeserts*/
 

@@ -11,6 +11,7 @@ namespace WebMenu.Models
         public List<Items> AppList { get; set; }
         public List<Items> DinList { get; set; }
         public List<Items> DesList { get; set; }
+        public List<Cart> CartList { get; set; }
         public Items CurrentItem { get; set; }
         public bool IsActionSuccess { get; set; }
         public string ActionMessage { get; set; }
@@ -52,6 +53,7 @@ namespace WebMenu.Models
             ItemList = GetAllItems();
             CurrentItem = ItemList.FirstOrDefault();
         }
+
         public List<Items> GetAllItems()
         {
             return _repo.GetAllItems();
@@ -72,14 +74,28 @@ namespace WebMenu.Models
         {
             return _repo.GetMealType(menu);
         }
-        
-        /*public void Add(int id)
+        public void AddToCart(Cart cart)
         {
-            Need to add items to Carts Class
-        add item to a list
-        then store the transaction history
+            //If item already exsist
+            if (cart.Quantity != null)
+            {
+                cart.Quantity++;
+
+            }
+            else
+            {
+                //If item does no exsit
+                List<Cart> cartList = new List<Cart>();
+            }
+
+            /*public void Add(int id)
+            {
+                Need to add items to Carts Class
+            add item to a list
+            then store the transaction history
+            }
+
+            */
         }
-        
-        */
     }
 }

@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MenuItems.DataAccess.EF.Models;
-using MenuItems.DataAccess.EF.Models;
+
 
 namespace MenuItems.DataAccess.EF.Context
 {
-    public class MenuItemsContext :DbContext
+    public class MenuItemsContext : DbContext
     {
         public MenuItemsContext()
         {
@@ -17,6 +17,39 @@ namespace MenuItems.DataAccess.EF.Context
 
         }
         public virtual DbSet<Items> Items { get; set; }
-        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Items>(entity =>
+            {
+                entity.HasKey(e => e.ItemID);
+
+                entity.Property(e => e.ItemID).HasColumnName("ItemID");
+
+                entity.Property(e => e.MealType)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.ItemName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Price)
+                    .IsRequired()
+                    .HasMaxLength(255);
+            });
+            OnModelCreatingPartial(modelBuilder);
+
+
+        }
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

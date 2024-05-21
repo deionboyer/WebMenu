@@ -9,6 +9,7 @@ namespace MenuItems.DataAccess.EF.Models
     public class Items
     {
         public int ItemID { get; set; }
+        public string MealType { get; set; }
         public string ItemName { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }

@@ -1,6 +1,9 @@
 ﻿using MenuItems.DataAccess.EF.Context;
 using MenuItems.DataAccess.EF.Models;
+using MenuItems.DataAccess.EF.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
+using System.ComponentModel.Design;
 using WebMenu.Models;
 
 namespace WebMenu.Controllers
@@ -68,6 +71,15 @@ namespace WebMenu.Controllers
             model.GetAllDesserts(menu);
             model.IsActionSuccess = true;
             model.ActionMessage = "";
+            return View(model);
+        }
+        public IActionResult AddItemsToCart(int id)
+        {
+            ItemsViewModel model = new ItemsViewModel(_context);
+            Cart cart = new Cart();
+            model.AddToCart(cart);
+            model.IsActionSuccess = true;
+            model.ActionMessage = "Item added to cart";
             return View(model);
         }
 
