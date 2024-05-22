@@ -1,12 +1,18 @@
 ﻿using MenuItems.DataAccess.EF.Context;
 using MenuItems.DataAccess.EF.Models;
+using MenuItems.DataAccess.EF.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
+using System.ComponentModel.Design;
 using WebMenu.Models;
 
 namespace WebMenu.Controllers
 {
     public class ItemsController : Controller
     {
+        private const string Appetizer = "Appetizer";
+        private const string Dinner = "Dinner";
+        private const string Dessert = "Dessert";
         private readonly MenuItemsContext _context;
         public ItemsController(MenuItemsContext context)
         {
@@ -15,13 +21,18 @@ namespace WebMenu.Controllers
         public IActionResult Index()
         {
             ItemsViewModel model = new ItemsViewModel(_context);
+            //Calls my GetMealByTtype Method. 
+            //they are getting called before my View is return so they are holdong valuse prior to being Viewed. 
+            model.AppList = model.GetMealByType(Appetizer);
+            model.DinList = model.GetMealByType(Dinner);
+            model.DesList = model.GetMealByType(Dessert);
             return View(model);
         }
         [HttpPost]
-        public IActionResult Index(int itemID, string itemName, string description, decimal price)
+        public IActionResult Index(int itemID, string itemName, string mealType ,string description, decimal price)
         {
             ItemsViewModel model = new ItemsViewModel(_context);
-            Items items = new Items(itemID, itemName, description, price);
+            Items items = new Items(itemID, itemName, mealType ,description, price);
             model.SaveItem(items);
             model.IsActionSuccess = true;
             model.ActionMessage = "Added";
@@ -43,31 +54,13 @@ namespace WebMenu.Controllers
             model.ActionMessage = "Deleted";
             return View("Index", model);
         }
-        public IActionResult GetAllAppetizers(string menu)
+        public IActionResult AddItemsToCart(int id)
         {
-            menu = "Appetizer";
             ItemsViewModel model = new ItemsViewModel(_context);
-            model.GetAllAppetizers(menu);
+            Cart cart = new Cart();
+            model.AddToCart(cart);
             model.IsActionSuccess = true;
-            model.ActionMessage = "";
-            return View(model);
-        }
-        public IActionResult GetAllDinners(string menu)
-        {
-            menu = "Dinner";
-            ItemsViewModel model = new ItemsViewModel(_context);
-            model.GetAllDinenrs(menu);
-            model.IsActionSuccess = true;
-            model.ActionMessage = "";
-            return View(model);
-        }
-        public IActionResult GetAllDesserts(string menu)
-        {
-            menu = "Dessert";
-            ItemsViewModel model = new ItemsViewModel(_context);
-            model.GetAllDesserts(menu);
-            model.IsActionSuccess = true;
-            model.ActionMessage = "";
+            model.ActionMessage = "Item added to cart";
             return View(model);
         }
 

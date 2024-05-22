@@ -51,11 +51,16 @@ namespace MenuItems.DataAccess.EF.Repositories
             Items items = _context.Items.Find(itemID);
             return items;
         }
-        public List<Items> GetMealType(string menu)
+        public IQueryable<Items> GetMealType(string menu)
         {
-            List<Items> menuList = new List<Items>();
-            return menuList;
+            return _context.Items.Where(x=> x.MealType == menu);//Filter the result. Will only return an IQuaerable, returns an IENumerable obeject. Filterd by the mealtype assigned
         }
+        public List<Cart> AddToCart(int id)
+        {
+            List<Cart> cartList = new List<Cart>();
+            return cartList;
+        }
+        
         /*Need "Add To Cart Button' Find how to create a method that returns a filters list using a linq. 
           Will Return GetAllDeserts*/
 

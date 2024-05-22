@@ -1,9 +1,9 @@
 ﻿@model ItemsViewModel
 @using MenuItems.DataAccess.EF.Models
-
 @{
     ViewData["Title"] = "EMP's BBQ | Menu";
 }
+
 
 <script type="text/javascript">
     function openLocation(url) {
@@ -41,25 +41,79 @@
         </div>
     }
 
-    <h1 class="display-4">Appetizers</h1>
+
+    <h1 class="display-4">Appetizers
+        
+    </h1>
     <div class="row">
         <div class="col-md-10 offset-md-1">
-            <table class="table">
+            <table class="table table-bordered">
                 <tr>
                     <th>ItemName</th>
+                    <th>MealType</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th colspan="2"><button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">A</button></th>
                 </tr>
 
                 @foreach (Items item in Model.AppList)
                 {
                     <tr>
                         <td>@item.ItemName</td>
+                        <td>@item.MealType</td>
                         <td>@item.Description</td>
                         <td>@item.Price</td>
-                        <td><button type="button" onclick="javascript:openLocation('/Items/Update/@item.ItemID')" class="btn btn-secondary btn-sm">EDIT</button></td>
-                        <td><button type="button" onclick="javascript:confirmDelete(@item.ItemID)" class="btn btn-danger btn-sm">DELETE</button></td>
+                        <th colspan="2"><button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button></th>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+    <h1 class="display-4">Dinner</h1>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <table class="table">
+                <tr>
+                    <th>ItemName</th>
+                    <th>MealType</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th colspan="2"><button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">A</button></th>
+                </tr>
+
+                @foreach (Items item in Model.DinList) 
+                {
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.MealType</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        <th colspan="2"><button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button></th>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <h1 class="display-4">Dessert</h1>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <table class="table">
+                <tr>
+                    <th>ItemName</th>
+                    <th>MealType</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th colspan="2"><button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">A</button></th>
+                </tr>
+
+                @foreach (Items item in Model.DesList)
+                {
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.MealType</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        <th colspan="2"><button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button></th>
                     </tr>
                 }
             </table>
