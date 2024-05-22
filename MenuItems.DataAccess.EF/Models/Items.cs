@@ -14,10 +14,11 @@ namespace MenuItems.DataAccess.EF.Models
         public string Description { get; set; }
         public decimal Price { get; set; }
         public Items() { }
-        public Items(int itemID, string itemName, string description, decimal price)
+        public Items(int itemID, string itemName, string mealType ,string description, decimal price)
         {
             ItemID = itemID;
             ItemName = itemName;
+            MealType = mealType;
             Description = description;
             Price = price;
         }

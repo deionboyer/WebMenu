@@ -62,18 +62,11 @@ namespace WebMenu.Models
         {
             return _repo.GetItemByID(id);
         }
-        public List<Items> GetAllAppetizers(string menu)
+        public List<Items> GetMealByType(string menu)
         {
-            return _repo.GetMealType(menu);
+            return _repo.GetMealType(menu).ToList(); // This will be called on the website. When user If i move the List of Meal Type to its own page. I can make just one property and use just that one propeerty for thw whol epage. 
         }
-        public List<Items> GetAllDinenrs(string menu)
-        {
-            return _repo.GetMealType(menu);
-        }
-        public List<Items> GetAllDesserts(string menu)
-        {
-            return _repo.GetMealType(menu);
-        }
+        
         public void AddToCart(Cart cart)
         {
             //If item already exsist
@@ -84,7 +77,7 @@ namespace WebMenu.Models
             }
             else
             {
-                //If item does no exsit
+                //If item does not exsit
                 List<Cart> cartList = new List<Cart>();
             }
 

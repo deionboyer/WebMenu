@@ -46,9 +46,10 @@ namespace MenuItems.DataAccess.EF.Context
                     .IsRequired()
                     .HasMaxLength(255);
             });
+            
 
 
         }
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        
     }
 }
