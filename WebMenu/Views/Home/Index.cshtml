@@ -1,13 +1,77 @@
-﻿@{
-    ViewData["Title"] = "EMP's BBQ";
+﻿@model ItemsViewModel
+@using MenuItems.DataAccess.EF.Models
+@{
+    ViewData["Title"] = "EMP's BBQ | MENU";
 }
 
-<div class="text-center">
-    <h1 class="display-4">WELCOME TO EMP's BBQ!</h1>
-    <div>
-        <h3>MENU</h3>
-        <div class="optionList">
-            <div class="optionItem"><a href="~/Items/Index">ITEMS</a></div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMP's BBQ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-4">WELCOME TO EMP's BBQ!</h1>
+        <div class="menu">
+            <div class="optionList">
+                <div class="optionItem"><a href="~/Items/Index">MENU</a></div>
+            </div>
         </div>
     </div>
-</div>
+</body>
+</html>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+        background-image: url('C:\Users\boyer\Downloads\ut5n15nq.jpg'); /* Specify your image path */
+        background-repeat: no-repeat; /* Prevent image from repeating */
+        background-attachment: fixed; /* Keep image fixed while scrolling */
+        background-size: cover; /* Cover the entire element */
+        /* Add other styles as needed */
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-image: url('file:///C:\Users\boyer\Downloads\ut5n15nq.png');
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    .menu {
+        text-align: center;
+    }
+
+    .optionList {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .optionItem {
+        margin-right: 20px;
+    }
+
+        .optionItem a {
+            text-decoration: none;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+            .optionItem a:hover {
+                color: #218838;
+            }
+</style>
