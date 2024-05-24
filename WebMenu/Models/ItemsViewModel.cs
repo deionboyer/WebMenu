@@ -66,29 +66,20 @@ namespace WebMenu.Models
         {
             return _repo.GetMealType(menu).ToList(); // This will be called on the website. When user If i move the List of Meal Type to its own page. I can make just one property and use just that one propeerty for thw whol epage. 
         }
-        
-        public void AddToCart(Cart cart)
+
+        /*public List<Cart> GetCartItems()
         {
-            //If item already exsist
-            if (cart.Quantity != null)
-            {
-                cart.Quantity++;
 
-            }
-            else
-            {
-                //If item does not exsit
-                List<Cart> cartList = new List<Cart>();
-            }
-
-            /*public void Add(int id)
-            {
-                Need to add items to Carts Class
-            add item to a list
-            then store the transaction history
-            }
-
-            */
         }
+        
+        public bool AddToCart(int id, int quantity)
+        {
+            _repo.AddToCart(id,quantity);
+            CartList = new List<Cart>();
+            return true;
+        }
+        //The cart does not need to be stored in database
+        // would combine and save item ids to the object its self. */
     }
 }
+        
