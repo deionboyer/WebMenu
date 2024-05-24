@@ -11,7 +11,7 @@ body{
     font-family: sans-serif;
 }
 /*herro section*/
-#hero{
+.container{
     position: relative;
     width: 100vw;
     height: 100vw;
@@ -20,7 +20,7 @@ body{
     align-items: center;
     text-align: center;
 }
-#hero_content::before {
+.optionList {
     content: "";
     position: absolute;
     top: 0;

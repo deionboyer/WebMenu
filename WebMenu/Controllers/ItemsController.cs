@@ -10,6 +10,7 @@ namespace WebMenu.Controllers
 {
     public class ItemsController : Controller
     {
+        
         private const string Appetizer = "Appetizer";
         private const string Dinner = "Dinner";
         private const string Dessert = "Dessert";
@@ -54,14 +55,19 @@ namespace WebMenu.Controllers
             model.ActionMessage = "Deleted";
             return View("Index", model);
         }
-        public IActionResult AddItemsToCart(int id)
+        /*public IActionResult AddItemsToCart(int id,int quantity)
         {
             ItemsViewModel model = new ItemsViewModel(_context);
-            Cart cart = new Cart();
-            model.AddToCart(cart);
-            model.IsActionSuccess = true;
-            model.ActionMessage = "Item added to cart";
-            return View(model);
+            bool addedToCart = model.AddToCart(id, quantity);
+            if (addedToCart)
+            {
+                return RedirectToAction("Cart", "Home");
+            }
+            else
+            {
+                return View("Error");
+            }
+            
         }
 
         /* Need an "Add To Cart" Button*/

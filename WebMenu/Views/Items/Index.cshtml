@@ -9,65 +9,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMP's BBQ | MENU</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Add your custom CSS styles here -->
+    <title>EMP's MENU</title>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
         }
 
-        .menu {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        * {
+            
+            margin: 0;
+            padding: 0;
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .menu-item {
+        body {
+            font-family: sans-serif;
+        }
+        /*herro section*/
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vw;
             display: flex;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .menu-image {
-            flex: 1;
-            max-width: 100px;
-            margin-right: 20px;
+        .optionList {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('file:///C:\Users\boyer\Downloads\ut5n15nq.png');
         }
-
-        .menu-details {
-            flex: 2;
-        }
-
-        .menu-price {
-            font-weight: bold;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-
-            .btn-success:hover {
-                background-color: #218838;
-                border-color: #1e7e34;
-            }
     </style>
+    
+
 </head>
 <body>
-    <div class="menu">
+    <div class="menu-container">
         <h1>EMP's MENU</h1>
         @foreach (Items item in Model.AppList)
         {
+
             <div class="menu-item">
                 <div class="menu-image">
                     <img src="@item.ImageUrl" alt="@item.ItemName">
@@ -79,25 +69,42 @@
                     <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
                 </div>
             </div>
+
         }
-    </div>
-</body>
-<body>
-    <div class="menu">
-        @foreach (Items item in Model.DinList)
-        {
-            <div class="menu-item">
-                <div class="menu-image">
-                    <img src="@item.ImageUrl" alt="@item.ItemName">
+        <div class="menu">
+            @foreach (Items item in Model.DinList)
+            {
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="@item.ImageUrl" alt="@item.ItemName">
+                    </div>
+                    <div class="menu-details">
+                        <h3>@item.MealType</h3>
+                        <p>@item.Description</p>
+                        <p class="menu-price">$@item.Price</p>
+                        <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
+                    </div>
+
                 </div>
-                <div class="menu-details">
-                    <h3>@item.MealType</h3>
-                    <p>@item.Description</p>
-                    <p class="menu-price">$@item.Price</p>
-                    <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
+            }
+        </div>
+        <div class="menu">
+            @foreach (Items item in Model.DesList)
+            {
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="@item.ImageUrl" alt="@item.ItemName">
+                    </div>
+                    <div class="menu-details">
+                        <h3>@item.MealType</h3>
+                        <p>@item.Description</p>
+                        <p class="menu-price">$@item.Price</p>
+                        <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
+                    </div>
                 </div>
-            </div>
-        }
+
+            }
+        </div>
     </div>
 </body>
 </html>
