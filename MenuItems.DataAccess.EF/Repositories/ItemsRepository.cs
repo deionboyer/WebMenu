@@ -55,22 +55,23 @@ namespace MenuItems.DataAccess.EF.Repositories
         {
             return _context.Items.Where(x=> x.MealType == menu);//Filter the result. Will only return an IQuaerable, returns an IENumerable obeject. Filterd by the mealtype assigned
         }
-        /*public IQueryable<Cart> GetCartTotal(int totalPrice)
-        {
-            Cart cart;
-            //Calc total price of items in the cart. 
-            //Call that takes a cart as a argument
-            //uses Linq to filter 
-            //Get cart total does return anything. 
-            //Passing in cart object. 
-            //I have acces tot he cart object. 
-            //Use linq to hit the table of items then foreach item to find ID and then mulitply that by quantity
-            //When
-            
-        }
         
-        /*Need "Add To Cart Button' Find how to create a method that returns a filters list using a linq. 
-          Will Return GetAllDeserts*/
+        ///*public IQueryable<Cart> GetCartTotal(int totalPrice)
+        //{
+        //    Cart cart;
+        //    //Calc total price of items in the cart. 
+        //    //Call that takes a cart as a argument
+        //    //uses Linq to filter 
+        //    //Get cart total does return anything. 
+        //    //Passing in cart object. 
+        //    //I have acces tot he cart object. 
+        //    //Use linq to hit the table of items then foreach item to find ID and then mulitply that by quantity
+        //    //When
+            
+        //}
+        
+        ///*Need "Add To Cart Button' Find how to create a method that returns a filters list using a linq. 
+        //  Will Return GetAllDeserts*/
 
     }
 }

@@ -1,0 +1,20 @@
+﻿@model WebMenu.Models.Cart
+
+<h2>Cart Summary</h2>
+@foreach (var cartItem in Model.CartItems)
+{
+    <div>
+        <h3>@cartItem.Item.Name</h3>
+        <p>Quantity: @cartItem.Quantity</p>
+        <p>Price: @cartItem.Item.Price</p>
+        <button onclick="removeFromCart(@cartItem.ItemId)">Remove</button>
+    </div>
+}
+
+<p>Total: @Model.GetTotal()</p>
+
+<script>
+    function removeFromCart(itemId) {
+        // Implement the logic to call the server and remove the item from the cart
+    }
+</script>

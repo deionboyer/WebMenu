@@ -9,49 +9,39 @@ namespace MenuItems.DataAccess.EF.Models
 {
     public class Cart
     {
-        public int ItemID { get; set; }
-        public int Quantity { get; set; }
-        public List<ItemsToAdd> ItemsAdded { get; set; }
-        /*public Cart() 
-        { 
-            ItemsAdded = new List<ItemsToAdd>(); // already have a list, now its empty
-        }
-        public void AddToCart(int id, int quantity)
+        public int CartId { get; set; }
+        public List<CartItems> CartItem { get; set; }
+
+        public Cart()
         {
-            var itemToAdd = new ItemsToAdd(id,quantity);
-            ItemsAdded.Add(itemToAdd);
-        }
-        public Cart GetCart()
-        {
-            // Get the cart from session or create one if it doesn't exist
-            Cart cart = Session["Cart"] as Cart;
-            if (cart == null)
-            {
-                cart = new Cart();
-                Session["Cart"] = cart;
-            }
-            return cart;
+            CartItem = new List<CartItems>();
         }
 
-        public void SaveCart(Cart cart)
+        public void AddItem(Items item, int quantity = 1)
         {
-            // Save the cart back to session
-            Session["Cart"] = cart;
-        }
-        public static class SessionExtensions
-        {
-            public static void SetObjectAsJson(this ISession session, string key, object value)
+            var existingItem = CartItem.FirstOrDefault(ci => ci.ItemId == item.ItemID);
+            if (existingItem != null)
             {
-                session.SetString(key, JsonConvert.SerializeObject(value));
+                existingItem.Quantity += quantity;
             }
+            else
+            {
+                CartItem.Add(new CartItems { ItemId = item.ItemID, Item = item, Quantity = quantity });
+            }
+        }
 
-            public static T GetObjectFromJson<T>(this ISession session, string key)
+        public void RemoveItem(int itemId)
+        {
+            var cartItem = CartItem.FirstOrDefault(ci => ci.ItemId == itemId);
+            if (cartItem != null)
             {
-                var value = session.GetString(key);
-                return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
+                CartItem.Remove(cartItem);
             }
         }
-        //use contructor to make sure the list is created. 
-        //Calculate total */
+
+        public decimal GetTotal()
+        {
+            return CartItem.Sum(ci => ci.Item.Price * ci.Quantity);
+        }
     }
 }
