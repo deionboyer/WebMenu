@@ -5,106 +5,168 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMP's MENU</title>
-
-    <style>
-        body {
-        }
-
-        * {
-            
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: sans-serif;
-        }
-        /*herro section*/
-        .container {
-            position: relative;
-            width: 100vw;
-            height: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .optionList {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('file:///C:\Users\boyer\Downloads\ut5n15nq.png');
-        }
-    </style>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 
 </head>
-<body>
-    <div class="menu-container">
-        <h1>EMP's MENU</h1>
-        @foreach (Items item in Model.AppList)
-        {
+<div class="menubody">
 
-            <div class="menu-item">
-                <div class="menu-image">
-                    <img src="@item.ImageUrl" alt="@item.ItemName">
-                </div>
-                <div class="menu-details">
-                    <h3>@item.MealType</h3>
-                    <p>@item.Description</p>
-                    <p class="menu-price">$@item.Price</p>
-                    <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top w3-hide-small">
+        <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+            <a href="#" class="w3-bar-item w3-button">^</a>
+            <a href="#menu" class="w3-bar-item w3-button">MENU</a>
+            <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+            <a href="#myMap" class="w3-bar-item w3-button">CONTACT</a>
+        </div>
+    </div>
+
+    <!-- Header with image -->
+    <!-- Menu Container -->
+
+    <div class="w3-container w3-black w3-padding-64 w3-xxlarge w3-image " id="menu">
+        <div class="w3-content">
+
+            <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
+            <div class="w3-row w3-center w3-border w3-border-dark-grey">
+                <a href="javascript:void(0)" onclick="openMenu(event, 'Appetizer');" id="myLink">
+                    <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Appetizer</div>
+                </a>
+                <a href="javascript:void(0)" onclick="openMenu(event, 'Dinner');">
+                    <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Dinner</div>
+                </a>
+                <a href="javascript:void(0)" onclick="openMenu(event, 'Dessert');">
+                    <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Dessert</div>
+                </a>
+            </div>
+            <div id="Appetizer" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
+                @foreach (Items item in Model.AppList) //This is a collection, it will repeat because I have a group of items in my database
+                {
+
+                    <div class="menu-item w3-margin-bottom">
+                        <div>
+                            <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
+                        </div>
+                        <div class="menu-details">
+                            <p>@item.ItemName</p>
+                            <p>@item.Description</p>
+                            <p class="menu-price">$@item.Price</p>
+                            <button type="button" onclick="location.href='@Url.Action("AddToCart", "Home", new { itemId = item.ItemID })'">Add To Cart</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div id="Dinner" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
+                @foreach (Items item in Model.DinList)
+                {
+
+                    <div class="menu-item w3-margin-bottom">
+                        <div>
+                            <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
+                        </div>
+                        <div class="menu-details">
+                            <p>@item.Description</p>
+                            <p class="menu-price">$@item.Price</p>
+                            <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div id="Dessert" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
+                @foreach (Items item in Model.DesList)
+                {
+
+                    <div class="menu-item w3-margin-bottom">
+                        <div>
+                            <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
+                        </div>
+                        <div class="menu-details">
+                            <p>@item.Description</p>
+                            <p class="menu-price">$@item.Price</p>
+                            <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+
+            <!-- About Container -->
+            <div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge" id="about">
+                <div class="w3-content">
+                    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
+                    <p>
+                        Welcome to EMP’s BBQ – where the aroma of smoked hickory and the sizzle of the grill promise an authentic BBQ experience that’s second to none.
+                        Nestled in the heart of the community, EMP’s BBQ is a haven for meat lovers and flavor seekers alike.
+                        Our menu is a tribute to time-honored traditions, featuring slow-cooked ribs, succulent pulled pork, and brisket that’s been perfected over a low flame for that fall-off-the-bone tenderness.
+                        Each dish is handcrafted with our signature rubs and sauces, ensuring a taste that lingers long after the last bite.
+                        Whether you’re here for a casual dinner or a festive gathering, EMP’s BBQ is the place where great food and good times come together.
+                        So pull up a chair, tie on a bib, and get ready for a BBQ experience that feels like home.
+                    </p>
+                    <p><strong>The Chef?</strong> Deion Boyer<img src="https://i.ibb.co/19Fd6X6/IMG-5147-2.jpg" style="width:150px" class="w3-circle w3-right" alt="Chef"></p>
+                    <p>We are proud of our interiors.</p>
+                    <img src="/w3images/onepage_restaurant.jpg" style="width:100%" class="w3-margin-top w3-margin-bottom" alt="Restaurant">
+                    <h1><b>Opening Hours</b></h1>
+
+                    <div class="w3-row">
+                        <div class="w3-col s6">
+                            <p>Mon & Tue CLOSED</p>
+                            <p>Wednesday 10.00am - 9:00pm</p>
+                            <p>Thursday 10:00am - 9:00pm</p>
+                        </div>
+                        <div class="w3-col s6">
+                            <p>Friday 10:00am - Midnight</p>
+                            <p>Saturday 10:00 - Midnight</p>
+                            <p>Sunday Closed</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-        }
-        <div class="menu">
-            @foreach (Items item in Model.DinList)
-            {
-                <div class="menu-item">
-                    <div class="menu-image">
-                        <img src="@item.ImageUrl" alt="@item.ItemName">
-                    </div>
-                    <div class="menu-details">
-                        <h3>@item.MealType</h3>
-                        <p>@item.Description</p>
-                        <p class="menu-price">$@item.Price</p>
-                        <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
-                    </div>
+            <!-- Image of location/map -->
+            <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;" id="myMap">
 
+            <!-- Contact -->
+            <div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge">
+                <div class="w3-content">
+                    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Contact</h1>
+                    <p>Find us at some address at some place or call us at (267) 123-1234</p>
+                    <p><span class="w3-tag">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
+                    <p class="w3-xxlarge"><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
+                    <form action="/action_page.php" target="_blank">
+                        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+                        <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="How many people" required name="People"></p>
+                        <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+                        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
+                        <p><button class="w3-button w3-light-grey w3-block" type="submit">SEND MESSAGE</button></p>
+                    </form>
                 </div>
-            }
-        </div>
-        <div class="menu">
-            @foreach (Items item in Model.DesList)
-            {
-                <div class="menu-item">
-                    <div class="menu-image">
-                        <img src="@item.ImageUrl" alt="@item.ItemName">
-                    </div>
-                    <div class="menu-details">
-                        <h3>@item.MealType</h3>
-                        <p>@item.Description</p>
-                        <p class="menu-price">$@item.Price</p>
-                        <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
-                    </div>
-                </div>
+            </div>
 
-            }
+            <!-- Footer -->
+
+
+            <script>
+                // Tabbed Menu
+                function openMenu(evt, menuName) {
+                    var i, x, tablinks;
+                    x = document.getElementsByClassName("menu");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablink");
+                    for (i = 0; i < x.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+                    }
+                    document.getElementById(menuName).style.display = "block";
+                    evt.currentTarget.firstElementChild.className += " w3-red";
+                }
+                document.getElementById("myLink").click();
+            </script>
         </div>
     </div>
-</body>
-</html>
+</div>

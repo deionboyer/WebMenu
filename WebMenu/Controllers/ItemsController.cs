@@ -55,6 +55,33 @@ namespace WebMenu.Controllers
             model.ActionMessage = "Deleted";
             return View("Index", model);
         }
+        /*public ActionResult AddToCart(int id)
+        {
+            var item = _context.MenuItems.Find(id);
+            if (item != null)
+            {
+                // Assuming you have a method to get the current cart from session
+                var cart = GetCart();
+                var cartItem = cart.Items.FirstOrDefault(i => i.ItemId == id);
+                if (cartItem != null)
+                {
+                    cartItem.Quantity++;
+                }
+                else
+                {
+                    cart.Items.Add(new CartItem
+                    {
+                        ItemId = item.Id,
+                        ItemName = item.Name,
+                        Price = item.Price,
+                        Quantity = 1
+                    });
+                }
+                // Assuming you have a method to save the cart back to session
+                SaveCart(cart);
+            }
+            return RedirectToAction("Index");
+        }
         /*public IActionResult AddItemsToCart(int id,int quantity)
         {
             ItemsViewModel model = new ItemsViewModel(_context);
