@@ -66,15 +66,18 @@ namespace WebMenu.Models
         {
             return _repo.GetMealType(menu).ToList(); // This will be called on the website. When user If i move the List of Meal Type to its own page. I can make just one property and use just that one propeerty for thw whol epage. 
         }
-        public void AddToCart(int itemId, int quantity)
+        public void AddToCart(MenuItemsContext context,int itemId, int quantity)
         {
-            Cart cartItem = new Cart();
-            var item = GetItem(itemId);
-            if (item != null)
-            {
-                // Assuming CartList is a property of type Cart
-                cartItem.AddItem(item, quantity);
-            }
+             _repo.AddItem(context, itemId, quantity);
+        }
+        public void RemoveFromCart(MenuItemsContext context,int itemId)
+        {
+            _repo.RemoveItem(context, itemId);
+        }
+        public decimal GetCartTotal(MenuItemsContext context)
+        {
+            return _repo.GetTotal(context);
+
         }
         ///*public Cart GetCart()
         //{
