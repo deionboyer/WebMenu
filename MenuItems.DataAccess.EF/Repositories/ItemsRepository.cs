@@ -1,5 +1,6 @@
 ﻿using MenuItems.DataAccess.EF.Context;
 using MenuItems.DataAccess.EF.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace MenuItems.DataAccess.EF.Repositories
     {
         private MenuItemsContext _context;
 
-
+        public List<Items> CartItems { get; set; }
         public ItemsRepository(MenuItemsContext context)
         {
             _context = context;
@@ -55,22 +56,69 @@ namespace MenuItems.DataAccess.EF.Repositories
         {
             return _context.Items.Where(x=> x.MealType == menu);//Filter the result. Will only return an IQuaerable, returns an IENumerable obeject. Filterd by the mealtype assigned
         }
-        /*public IQueryable<Cart> GetCartTotal(int totalPrice)
+        //Divide everything in small chunkcs fix things one thing at a time. 
+
+        public void AddItem(MenuItemsContext context, int itemId, int quantity = 1)
         {
-            Cart cart;
-            //Calc total price of items in the cart. 
-            //Call that takes a cart as a argument
-            //uses Linq to filter 
-            //Get cart total does return anything. 
-            //Passing in cart object. 
-            //I have acces tot he cart object. 
-            //Use linq to hit the table of items then foreach item to find ID and then mulitply that by quantity
-            //When
-            
+            var cart = context.Carts.FirstOrDefault(); // Assuming there's only one cart for simplicity
+            var item = context.Items.FirstOrDefault(i => i.ItemID == itemId);
+
+            if (item != null)
+            {
+                var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ItemId == itemId);
+                if (existingCartItem != null)
+                {
+                    existingCartItem.Quantity += quantity;
+                }
+                else
+                {
+                    cart.CartItems.Add(new CartItem { ItemId = itemId, Quantity = quantity });
+                }
+                context.SaveChanges();
+            }
         }
-        
-        /*Need "Add To Cart Button' Find how to create a method that returns a filters list using a linq. 
-          Will Return GetAllDeserts*/
+
+        public void RemoveItem(MenuItemsContext context, int itemId)
+        {
+            var cart = context.Carts.FirstOrDefault(); // Assuming there's only one cart for simplicity
+            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ItemId == itemId);
+
+            if (cartItem != null)
+            {
+                cart.CartItems.Remove(cartItem);
+                context.SaveChanges();
+            }
+        }
+
+        public decimal GetTotal(MenuItemsContext context)
+        {
+            var cart = context.Carts
+                .Include(c => c.CartItems)
+                .ThenInclude(ci => ci.Item)
+                .FirstOrDefault(); // Assuming there's only one cart for simplicity
+
+            return cart?.CartItems.Sum(ci => ci.Item.Price * ci.Quantity) ?? 0;
+        }
+        //Adds removed read info from database it has to be on the repository
+
+
+        //Create static list at top. Addthe methods 
+        ///*public IQueryable<Cart> GetCartTotal(int totalPrice)
+        //{
+        //    Cart cart;
+        //    //Calc total price of items in the cart. 
+        //    //Call that takes a cart as a argument
+        //    //uses Linq to filter 
+        //    //Get cart total does return anything. 
+        //    //Passing in cart object. 
+        //    //I have acces tot he cart object. 
+        //    //Use linq to hit the table of items then foreach item to find ID and then mulitply that by quantity
+        //    //When
+
+        //}
+
+        ///*Need "Add To Cart Button' Find how to create a method that returns a filters list using a linq. 
+        //  Will Return GetAllDeserts*/
 
     }
 }

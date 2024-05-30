@@ -17,6 +17,8 @@ namespace MenuItems.DataAccess.EF.Context
 
         }
         public virtual DbSet<Items> Items { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -45,8 +47,14 @@ namespace MenuItems.DataAccess.EF.Context
                 entity.Property(e => e.Price)
                     .IsRequired()
                     .HasMaxLength(255);
+
             });
-            
+            modelBuilder.Entity<CartItem>()
+            .HasOne(ci => ci.Item)
+            .WithMany()
+            .HasForeignKey(ci => ci.ItemId);
+
+
 
 
         }

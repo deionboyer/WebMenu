@@ -11,7 +11,7 @@ namespace WebMenu.Models
         public List<Items> AppList { get; set; }
         public List<Items> DinList { get; set; }
         public List<Items> DesList { get; set; }
-        public List<Cart> CartList { get; set; }
+        
         public Items CurrentItem { get; set; }
         public bool IsActionSuccess { get; set; }
         public string ActionMessage { get; set; }
@@ -66,38 +66,51 @@ namespace WebMenu.Models
         {
             return _repo.GetMealType(menu).ToList(); // This will be called on the website. When user If i move the List of Meal Type to its own page. I can make just one property and use just that one propeerty for thw whol epage. 
         }
-        /*public Cart GetCart()
+        public void AddToCart(MenuItemsContext context,int itemId, int quantity)
         {
-            // Get the cart from session or create one if it doesn't exist
-            Cart cart = Session["Cart"] as Cart;
-            if (cart == null)
-            {
-                cart = new Cart();
-                Session["Cart"] = cart;
-            }
-            return cart;
+             _repo.AddItem(context, itemId, quantity);
         }
-
-        public void SaveCart(Cart cart)
+        public void RemoveFromCart(MenuItemsContext context,int itemId)
         {
-            // Save the cart back to session
-            Session["Cart"] = cart;
+            _repo.RemoveItem(context, itemId);
         }
-
-        /*public List<Cart> GetCartItems()
+        public decimal GetCartTotal(MenuItemsContext context)
         {
+            return _repo.GetTotal(context);
 
         }
+        ///*public Cart GetCart()
+        //{
+        //    // Get the cart from session or create one if it doesn't exist
+        //    Cart cart = Session["Cart"] as Cart;
+        //    if (cart == null)
+        //    {
+        //        cart = new Cart();
+        //        Session["Cart"] = cart;
+        //    }
+        //    return cart;
+        //}
+
+        //public void SaveCart(Cart cart)
+        //{
+        //    // Save the cart back to session
+        //    Session["Cart"] = cart;
+        //}
+
+        ///*public List<Cart> GetCartItems()
+        //{
+
+        //}
         
-        public bool AddToCart(int id, int quantity)
-        {
-            _repo.AddToCart(id,quantity);
-            CartList = new List<Cart>();
-            return true;
-        }
-        //The cart does not need to be stored in database
-        // would combine and save item ids to the object its self. */
-        //state of the application
+        //public bool AddToCart(int id, int quantity)
+        //{
+        //    _repo.AddToCart(id,quantity);
+        //    CartList = new List<Cart>();
+        //    return true;
+        //}
+        ////The cart does not need to be stored in database
+        //// would combine and save item ids to the object its self. */
+        ////state of the application
     }
 }
         
