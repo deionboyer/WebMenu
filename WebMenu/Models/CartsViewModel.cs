@@ -8,21 +8,19 @@ namespace WebMenu.Models
     {
         private ItemsRepository _repo;
 
-        public List<CartItem>? CartItems { get;  set; }
+        public CartsViewModel(MenuItemsContext context)
+        {
+            _repo = new ItemsRepository(context);
+        }
+
+        public List<CartItem> CartItems { get; set; } = new List<CartItem>();
         public decimal Total { get;  set; }
 
-        public void AddToCart(MenuItemsContext context, int itemId, int quantity)
-        {
-            _repo.AddItem(context, itemId, quantity);
-        }
-        public void RemoveFromCart(MenuItemsContext context, int itemId)
-        {
-            _repo.RemoveItem(context, itemId);
-        }
-        public decimal GetCartTotal(MenuItemsContext context)
-        {
-            return _repo.GetTotal(context);
+        
+        //public decimal GetCartTotal()
+        //{
+        //    return _repo.GetTotal();
 
-        }
+        //}
     }
 }

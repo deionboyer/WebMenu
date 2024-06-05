@@ -4,9 +4,9 @@
     @foreach (var cartItem in Model.CartItems)
     {
         <div class="cart-details">
-            <p>@cartItem.ItemName</p>
-            <p>@cartItem.Description</p>
-            <button onclick="addToCart(@cartItem.ItemId)">Add To Cart</button>
+            <p>@cartItem.Item</p>
+            <p>@cartItem.Price</p>
+            <button onclick="addToCart(@cartItem.Item)">Add To Cart</button>
         </div>
     }
 </div>

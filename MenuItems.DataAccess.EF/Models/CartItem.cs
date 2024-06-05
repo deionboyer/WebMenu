@@ -11,24 +11,31 @@ namespace MenuItems.DataAccess.EF.Models
     public class CartItem
     {
         [Key]
-        public int CartItemId { get; set; }
-        public string ItemName {  get; set; }
-        public string Description {  get; set; }
+        public int Id { get; set; }
         public int ItemId { get; set; }
         [ForeignKey("ItemId")]
+        //public string ItemName { get; set; }
         public Items Item { get; set; }
         public int Quantity { get; set; }
+        public double Price {  get; set; }
         public CartItem()
         {
 
         }
-        public CartItem(int cartItemId, string itemName, string description, int itemId, Items item, int quantity)
+        public CartItem(int id, int itemId, string itemName, Items item, int quantity, double price)
         {
-            CartItemId = cartItemId;
-            ItemName = itemName;
-            Description = description;
-            ItemId = itemId;
+            //Id = id;
+            //ItemId = itemId;
+            //ItemName = itemName;
             Item = item;
+            Quantity = quantity;
+            Price = price;
+        }
+        public CartItem(int id, int itemId, string itemName, int quantity, double price)
+        {
+            //Id = id;
+            ItemId = itemId;
+            //ItemName = itemName;
             Quantity = quantity;
         }
     }
