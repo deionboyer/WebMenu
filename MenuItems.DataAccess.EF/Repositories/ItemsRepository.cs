@@ -1,6 +1,7 @@
 ﻿using MenuItems.DataAccess.EF.Context;
 using MenuItems.DataAccess.EF.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace MenuItems.DataAccess.EF.Repositories
 {
     public class ItemsRepository
     {
+        
         private MenuItemsContext _context;
-
         public List<Items> CartItems { get; set; }
         public ItemsRepository(MenuItemsContext context)
         {
@@ -58,47 +59,7 @@ namespace MenuItems.DataAccess.EF.Repositories
         }
         //Divide everything in small chunkcs fix things one thing at a time. 
 
-        public void AddItem(MenuItemsContext context, int itemId, int quantity = 1)
-        {
-            var cart = context.Carts.FirstOrDefault(); // Assuming there's only one cart for simplicity
-            var item = context.Items.FirstOrDefault(i => i.ItemID == itemId);
-
-            if (item != null)
-            {
-                var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ItemId == itemId);
-                if (existingCartItem != null)
-                {
-                    existingCartItem.Quantity += quantity;
-                }
-                else
-                {
-                    cart.CartItems.Add(new CartItem { ItemId = itemId, Quantity = quantity });
-                }
-                context.SaveChanges();
-            }
-        }
-
-        public void RemoveItem(MenuItemsContext context, int itemId)
-        {
-            var cart = context.Carts.FirstOrDefault(); // Assuming there's only one cart for simplicity
-            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ItemId == itemId);
-
-            if (cartItem != null)
-            {
-                cart.CartItems.Remove(cartItem);
-                context.SaveChanges();
-            }
-        }
-
-        public decimal GetTotal(MenuItemsContext context)
-        {
-            var cart = context.Carts
-                .Include(c => c.CartItems)
-                .ThenInclude(ci => ci.Item)
-                .FirstOrDefault(); // Assuming there's only one cart for simplicity
-
-            return cart?.CartItems.Sum(ci => ci.Item.Price * ci.Quantity) ?? 0;
-        }
+        
         //Adds removed read info from database it has to be on the repository
 
 

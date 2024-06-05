@@ -57,37 +57,37 @@ namespace WebMenu.Controllers
             model.ActionMessage = "Deleted";
             return View("Index", model);
         }
-        public IActionResult AddItemToCart(int itemId, int quantity)
-        {
-            ItemsViewModel model = new ItemsViewModel(_context);
-            model.AddToCart(_context, itemId, quantity);
-            model.IsActionSuccess = true;
-            model.ActionMessage = "Add To Cart";
-            // Redirect to the cart view or return a success response
-            return Json(new { success = true }); // Return a JSON response
-        }
+        //public IActionResult AddItemToCart(int itemId, int quantity)
+        //{
+        //    ItemsViewModel model = new ItemsViewModel(_context);
+        //    model.AddToCart(_context, itemId, quantity);
+        //    model.IsActionSuccess = true;
+        //    model.ActionMessage = "Add To Cart";
+        //    // Redirect to the cart view or return a success response
+        //    return Json(new { success = true }); // Return a JSON response
+        //}
 
-        public IActionResult RemoveItemFromCart(int itemId)
-        {
-            ItemsViewModel model = new ItemsViewModel(_context);
-            model.RemoveFromCart(_context, itemId);
-            model.IsActionSuccess = true;
-            model.ActionMessage = "Item Deleted";
-            // Redirect to the cart view or return a success response
-            return RedirectToAction("ViewCart");
-        }
+        ////public IActionResult RemoveItemFromCart(int itemId)
+        ////{
+        ////    ItemsViewModel model = new ItemsViewModel(_context);
+        ////    model.RemoveFromCart(_context, itemId);
+        ////    model.IsActionSuccess = true;
+        ////    model.ActionMessage = "Item Deleted";
+        ////    // Redirect to the cart view or return a success response
+        ////    return RedirectToAction("ViewCart");
+        ////}
 
-        public IActionResult ViewCart()
-        {
-            ItemsViewModel model = new ItemsViewModel(_context);
-            var total = model.GetCartTotal(_context);
-            var cartItems = _context.Carts
-                .Include(c => c.CartItems)
-                .ThenInclude(ci => ci.Item)
-                .FirstOrDefault()?.CartItems;
-            // Pass the cart items and total to the view
-            return View(new CartsViewModel { CartItems = cartItems, Total = total });
-        }
+        ////public IActionResult ViewCart()
+        ////{
+        ////    ItemsViewModel model = new ItemsViewModel(_context);
+        ////    var total = model.GetCartTotal(_context);
+        ////    var cartItems = _context.Carts
+        ////        .Include(c => c.CartItems)
+        ////        .ThenInclude(ci => ci.Item)
+        ////        .FirstOrDefault()?.CartItems;
+        ////    // Pass the cart items and total to the view
+        ////    return View(new CartsViewModel { CartItems = cartItems, Total = total });
+        ////}
 
 
         //Controller 
