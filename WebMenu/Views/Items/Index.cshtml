@@ -12,184 +12,162 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 
 </head>
+<img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;" id="myMap">
 
-<div class="menubody">
-    <div class="cart">
-        <h3>Your Cart</h3>
-        <ul class="product-list"></ul>
-        <div class="checkout">
-            <div class="total">
-                <div class="total"><small>Subtotal (0 item)</small>$0</div>
-                <div class="close">Close</div>
-            </div>
-        </div>
+
+
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+    <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+        <a href="#" class="w3-bar-item w3-button">^</a>
+        <a href="#menu" class="w3-bar-item w3-button">MENU</a>
+        <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
     </div>
+</div>
 
-    <!-- Navbar (sit on top) -->
-    <div class="w3-top w3-hide-small">
-        <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
-            <a href="#" class="w3-bar-item w3-button">^</a>
-            <a href="#menu" class="w3-bar-item w3-button">MENU</a>
-            <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
-            <a href="#myMap" class="w3-bar-item w3-button">Cart</a>
-            <div class="shoppingBasket w3-bar-item w3-button" <a href="#cart" class="w3-bar-item w3-button">CART</a>
-                <span class="quantity">0 </span>
-            </div>
-        </div>
-    </div>
+<!-- Header with image -->
+<!-- Menu Container -->
 
-    <!-- Header with image -->
-    <!-- Menu Container -->
+<input type="hidden" id="itemId" name="itemId" value=0>
 
-    <input type="hidden" id="itemId" name="itemId" value=0>
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge w3-image " id="menu">
+    <div class="w3-content">
 
-    <div class="w3-container w3-black w3-padding-64 w3-xxlarge w3-image " id="menu">
-        <div class="w3-content">
-
-            <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
-            <div class="w3-row w3-center w3-border w3-border-dark-grey">
-                <a href="javascript:void(0)" onclick="openMenu(event, 'Appetizer');" id="myLink">
-                    <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Appetizer</div>
-                </a>
-                <a href="javascript:void(0)" onclick="openMenu(event, 'Dinner');">
-                    <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Dinner</div>
-                </a>
-                <a href="javascript:void(0)" onclick="openMenu(event, 'Dessert');">
-                    <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Dessert</div>
-                </a>
-            </div>
-
-            <div id="Appetizer" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
-                @foreach (Items item in Model.AppList) //This is a collection, it will repeat because I have a group of items in my database
-                {
-                    <input type="hidden" id="itemId" name="itemId" value="@item.ItemID">
-                    <div class="menu-item w3-margin-bottom">
-                        <div>
-                            <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
-                        </div>
-                        <div class="menu-details">
-                            <p>@item.ItemName</p>
-                            <p>@item.Description</p>
-                            <p class="menu-price">$@item.Price</p>
-                            <button type="button" onclick="location.href='@Url.Action("AddToCart", "Home", new { itemId = item.ItemID })'">Add To Cart</button>
-                        </div>
-                    </div>
-                }
-            </div>
-            <div id="Dinner" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
-                @foreach (Items item in Model.DinList)
-                {
-                    <input type="hidden" id="itemId" name="itemId" value="@item.ItemID">
-                    <div class="menu-item w3-margin-bottom">
-                        <div>
-                            <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
-                        </div>
-                        <div class="menu-details">
-                            <p>@item.ItemName</p>
-                            <p>@item.Description</p>
-                            <p class="menu-price">$@item.Price</p>
-                            <button type="button" onclick="javascript:openLocation('/Items/Update/0')" class="btn btn-success btn-sm">Add To Cart</button>
-                        </div>
-                    </div>
-                }
-            </div>
-            <div id="Dessert" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
-                @foreach (Items item in Model.DesList)
-                {
-                    <input type="hidden" id="itemId" name="itemId" value="@item.ItemID">
-                    <div class="menu-item w3-margin-bottom">
-                        <div>
-                            <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
-                        </div>
-                        <div class="menu-details">
-                            <p>@item.ItemName</p>
-                            <p>@item.Description</p>
-                            <p class="menu-price">$@item.Price</p>
-                            <button onclick="addToCart(@item.ItemID, '@item.ItemName', @item.Price)">Add To Cart</button>
-                        </div>
-                    </div>
-                }
-            </div>
-
+        <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
+        <div class=" menurow w3-row w3-center w3-border w3-border-dark-grey">
+            <a href="javascript:void(0)" onclick="openMenu(event, 'Appetizer');" id="myLink">
+                <div class="w3-col s3 tablink w3-padding-large w3-hover-red">Appetizer</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openMenu(event, 'Dinner');">
+                <div class="w3-col s3 tablink w3-padding-large w3-hover-red">Dinner</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openMenu(event, 'Dessert');">
+                <div class="w3-col s3 tablink w3-padding-large w3-hover-red">Dessert</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openMenu(event, 'Cart');">
+                <div class="w3-col s3 tablink w3-padding-large w3-hover-red">Cart</div>
+            </a>
         </div>
 
 
-
-
-
-
-
-
-        <!-- About Container -->
-        <div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge" id="about">
-            <div class="w3-content">
-                <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
-                <p>
-                    Welcome to EMP’s BBQ – where the aroma of smoked hickory and the sizzle of the grill promise an authentic BBQ experience that’s second to none.
-                    Nestled in the heart of the community, EMP’s BBQ is a haven for meat lovers and flavor seekers alike.
-                    Our menu is a tribute to time-honored traditions, featuring slow-cooked ribs, succulent pulled pork, and brisket that’s been perfected over a low flame for that fall-off-the-bone tenderness.
-                    Each dish is handcrafted with our signature rubs and sauces, ensuring a taste that lingers long after the last bite.
-                    Whether you’re here for a casual dinner or a festive gathering, EMP’s BBQ is the place where great food and good times come together.
-                    So pull up a chair, tie on a bib, and get ready for a BBQ experience that feels like home.
-                </p>
-                <p><strong>The Chef?</strong> Deion Boyer<img src="https://i.ibb.co/19Fd6X6/IMG-5147-2.jpg" style="width:150px" class="w3-circle w3-right" alt="Chef"></p>
-                <p>We are proud of our interiors.</p>
-                <img src="/w3images/onepage_restaurant.jpg" style="width:100%" class="w3-margin-top w3-margin-bottom" alt="Restaurant">
-                <h1><b>Opening Hours</b></h1>
-
-                <div class="w3-row">
-                    <div class="w3-col s6">
-                        <p>Mon & Tue CLOSED</p>
-                        <p>Wednesday 10.00am - 9:00pm</p>
-                        <p>Thursday 10:00am - 9:00pm</p>
+        <div id="Appetizer" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
+            @foreach (Items item in Model.AppList) //This is a collection, it will repeat because I have a group of items in my database
+            {
+                <input type="hidden" id="itemId" name="itemId" value="@item.ItemID">
+                <div class="menu-item w3-margin-bottom">
+                    <div>
+                        <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
                     </div>
-                    <div class="w3-col s6">
-                        <p>Friday 10:00am - Midnight</p>
-                        <p>Saturday 10:00 - Midnight</p>
-                        <p>Sunday Closed</p>
+                    <div class="menu-details">
+                        <p>@item.ItemName</p>
+                        <p>@item.Description</p>
+                        <p class="menu-price">$@item.Price</p>
+                        <button onclick="addToCart(@item.ItemID, '@item.ItemName', @item.Price)">Add To Cart</button>
                     </div>
                 </div>
-
-            </div>
+            }
         </div>
-
-        <!-- Image of location/map -->
-        <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;" id="myMap">
-
-        <!-- Contact -->
-        <div class="mycart">
-            <div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge">
-                <div class="w3-content">
-
-                    <h3>Your Cart</h3>
-                    <ul class="product-list"></ul>
-                    @* <li><
-                    @foreach (Items item in Model.ItemList)
-                    {
-                        <input type="hidden" id="itemId" name="itemId" value="@item.ItemID">
-                        <div class="menu-item w3-margin-bottom">
-                            <div>
-                                <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
-                            </div>
-                            <div class="menu-details">
-                                <p>@item.ItemName</p>
-                                <p>@item.Description</p>
-                                <p class="menu-price">$@item.Price</p>
-                            </div>
-                        </div>
-                    }
-                    </li> *@
-                    <li>itemName</li>
-                    @* cart items will be added here, need to add logic *@
-                    <div class="checkout">
+        <div id="Dinner" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
+            @foreach (Items item in Model.DinList)
+            {
+                <input type="hidden" id="itemId" name="itemId" value="@item.ItemID">
+                <div class="menu-item w3-margin-bottom">
+                    <div>
+                        <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
+                    </div>
+                    <div class="menu-details">
+                        <p>@item.ItemName</p>
+                        <p>@item.Description</p>
+                        <p class="menu-price">$@item.Price</p>
+                        <button onclick="addToCart(@item.ItemID, '@item.ItemName', @item.Price)">Add To Cart</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="Dessert" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
+            @foreach (Items item in Model.DesList)
+            {
+                <input type="hidden" id="itemId" name="itemId" value="@item.ItemID">
+                <div class="menu-item w3-margin-bottom">
+                    <div>
+                        <img src="@item.ImageUrl" alt="@item.ItemName" class="menu-image">
+                    </div>
+                    <div class="menu-details">
+                        <p>@item.ItemName</p>
+                        <p>@item.Description</p>
+                        <p class="menu-price">$@item.Price</p>
+                        <button onclick="addToCart(@item.ItemID, '@item.ItemName', @item.Price)">Add To Cart</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="Cart" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
+            <div class="cart">
+                <div class="w3-container w3-padding-64 w3-grayscale-min w3-xlarge">
+                    <div class="w3-content">
+                        <h3>Your Cart</h3>
+                        <div class="product-list"></div> <!-- No need for <ul> -->
                         <div class="total-amount">
-                            <div class="quantity"><small>Subtotal (0 item)</small>$0</div>
-                            <div class="close">Close</div>
+                            Total: $<span id="totalAmount">0</span>
                         </div>
+                        @foreach(Items item in Model.ItemList)
+                        {
+                            <button class="delete-item" onclick="removeFromCart(@item.ItemID)">Delete</button>
+                        }
+                        
                     </div>
                 </div>
             </div>
         </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- About Container -->
+    <div class="w3-container w3-padding-64 w3-cyan  w3-xlarge" id="about">
+        <div class="w3-content">
+            <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
+            <p>
+                Welcome to EMP’s BBQ – where the aroma of smoked hickory and the sizzle of the grill promise an authentic BBQ experience that’s second to none.
+                Nestled in the heart of the community, EMP’s BBQ is a haven for meat lovers and flavor seekers alike.
+                Our menu is a tribute to time-honored traditions, featuring slow-cooked ribs, succulent pulled pork, and brisket that’s been perfected over a low flame for that fall-off-the-bone tenderness.
+                Each dish is handcrafted with our signature rubs and sauces, ensuring a taste that lingers long after the last bite.
+                Whether you’re here for a casual dinner or a festive gathering, EMP’s BBQ is the place where great food and good times come together.
+                So pull up a chair, tie on a bib, and get ready for a BBQ experience that feels like home.
+            </p>
+            <p><strong>The Chef?</strong> Deion Boyer<img src="https://i.ibb.co/19Fd6X6/IMG-5147-2.jpg" style="width:150px" class="w3-circle w3-right" alt="Chef"></p>
+            <img src="https://i.ibb.co/s993p8P/swrvjyuq.png" style="width:50%" class="w3-margin-top w3-margin-bottom" alt="Restaurant">
+            <h1><b>Opening Hours</b></h1>
+
+            <div class="w3-row">
+                <div class="w3-col s6">
+                    <p>Mon & Tue CLOSED</p>
+                    <p>Wednesday 10.00am - 9:00pm</p>
+                    <p>Thursday 10:00am - 9:00pm</p>
+                </div>
+                <div class="w3-col s6">
+                    <p>Friday 10:00am - Midnight</p>
+                    <p>Saturday 10:00 - Midnight</p>
+                    <p>Sunday Closed</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Image of location/map -->
+    <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;" id="myMap">
+
+    <!-- Contact -->
+    
 
         <!-- Footer -->
 
@@ -211,5 +189,4 @@
             }
             document.getElementById("myLink").click();
         </script>
-    </div>
 </div>
