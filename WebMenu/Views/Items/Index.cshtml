@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 
 </head>
-<img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;" id="myMap">
 
 
 
@@ -36,7 +35,7 @@
     <div class="w3-content">
 
         <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
-        <div class=" menurow w3-row w3-center w3-border w3-border-dark-grey">
+        <div class=" menu-row w3-row w3-center w3-border w3-border-dark-grey">
             <a href="javascript:void(0)" onclick="openMenu(event, 'Appetizer');" id="myLink">
                 <div class="w3-col s3 tablink w3-padding-large w3-hover-red">Appetizer</div>
             </a>
@@ -112,11 +111,12 @@
                         <div class="total-amount">
                             Total: $<span id="totalAmount">0</span>
                         </div>
-                        @foreach(Items item in Model.ItemList)
+                        @foreach (Items item in Model.ItemList)
                         {
                             <button class="delete-item" onclick="removeFromCart(@item.ItemID)">Delete</button>
+
                         }
-                        
+
                     </div>
                 </div>
             </div>
@@ -132,20 +132,24 @@
 
 
     <!-- About Container -->
-    <div class="w3-container w3-padding-64 w3-cyan  w3-xlarge" id="about">
-        <div class="w3-content">
-            <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
+    <div class="about-container w3-container w3-padding-64 w3-cyan  w3-xlarge" id="about">
+        <div class="about-content w3-content">
+            <h1 class="about-h1 w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
             <p>
-                Welcome to EMP’s BBQ – where the aroma of smoked hickory and the sizzle of the grill promise an authentic BBQ experience that’s second to none.
+                Welcome to EMP’s BBQ
+            <p>
+                – where the aroma of smoked hickory and the sizzle of the grill promise an authentic BBQ experience that’s second to none.
                 Nestled in the heart of the community, EMP’s BBQ is a haven for meat lovers and flavor seekers alike.
                 Our menu is a tribute to time-honored traditions, featuring slow-cooked ribs, succulent pulled pork, and brisket that’s been perfected over a low flame for that fall-off-the-bone tenderness.
                 Each dish is handcrafted with our signature rubs and sauces, ensuring a taste that lingers long after the last bite.
                 Whether you’re here for a casual dinner or a festive gathering, EMP’s BBQ is the place where great food and good times come together.
                 So pull up a chair, tie on a bib, and get ready for a BBQ experience that feels like home.
             </p>
+            </p>
             <p><strong>The Chef?</strong> Deion Boyer<img src="https://i.ibb.co/19Fd6X6/IMG-5147-2.jpg" style="width:150px" class="w3-circle w3-right" alt="Chef"></p>
             <img src="https://i.ibb.co/s993p8P/swrvjyuq.png" style="width:50%" class="w3-margin-top w3-margin-bottom" alt="Restaurant">
-            <h1><b>Opening Hours</b></h1>
+            <p>Address: 554 Harmony St Coatesville, PA 19320</p>
+            <h1><b>Hours</b></h1>
 
             <div class="w3-row">
                 <div class="w3-col s6">
@@ -164,29 +168,26 @@
     </div>
 
     <!-- Image of location/map -->
-    <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;" id="myMap">
 
     <!-- Contact -->
-    
-
-        <!-- Footer -->
+    <!-- Footer -->
 
 
-        <script>
-            // Tabbed Menu
-            function openMenu(evt, menuName) {
-                var i, x, tablinks;
-                x = document.getElementsByClassName("menu");
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
-                }
-                tablinks = document.getElementsByClassName("tablink");
-                for (i = 0; i < x.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-                }
-                document.getElementById(menuName).style.display = "block";
-                evt.currentTarget.firstElementChild.className += " w3-red";
+    <script>
+        // Tabbed Menu
+        function openMenu(evt, menuName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("menu");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
             }
-            document.getElementById("myLink").click();
-        </script>
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(menuName).style.display = "block";
+            evt.currentTarget.firstElementChild.className += " w3-red";
+        }
+        document.getElementById("myLink").click();
+    </script>
 </div>
