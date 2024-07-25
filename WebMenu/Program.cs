@@ -8,6 +8,7 @@ namespace WebMenu
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

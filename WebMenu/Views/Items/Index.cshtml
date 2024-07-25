@@ -12,11 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 
 </head>
-
-
-
-
-
 <!-- Navbar (sit on top) -->
 <div class="w3-top w3-hide-small">
     <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
@@ -25,10 +20,7 @@
         <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
     </div>
 </div>
-
-<!-- Header with image -->
 <!-- Menu Container -->
-
 <input type="hidden" id="itemId" name="itemId" value=0>
 
 <div class="w3-container w3-black w3-padding-64 w3-xxlarge w3-image " id="menu">
@@ -49,8 +41,6 @@
                 <div class="w3-col s3 tablink w3-padding-large w3-hover-red">Cart</div>
             </a>
         </div>
-
-
         <div id="Appetizer" class="w3-container menu w3-padding-32 w3-white w3-margin-bottom">
             @foreach (Items item in Model.AppList) //This is a collection, it will repeat because I have a group of items in my database
             {
@@ -109,7 +99,7 @@
                         <h3>Your Cart</h3>
                         <div class="product-list"></div> <!-- No need for <ul> -->
                         <div class="total-amount">
-                            Total: $<span id="totalAmount">0</span>
+                            Total: $<span id="totalAmount">0.00</span>
                         </div>
                         @foreach (Items item in Model.ItemList)
                         {
@@ -123,14 +113,6 @@
         </div>
 
     </div>
-
-
-
-
-
-
-
-
     <!-- About Container -->
     <div class="about-container w3-container w3-padding-64 w3-cyan  w3-xlarge" id="about">
         <div class="about-content w3-content">
@@ -166,13 +148,7 @@
 
         </div>
     </div>
-
-    <!-- Image of location/map -->
-
-    <!-- Contact -->
-    <!-- Footer -->
-
-
+    <!-- Footer if needed-->
     <script>
         // Tabbed Menu
         function openMenu(evt, menuName) {
