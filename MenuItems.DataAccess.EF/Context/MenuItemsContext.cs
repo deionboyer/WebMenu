@@ -17,13 +17,10 @@ namespace MenuItems.DataAccess.EF.Context
 
         }
         public virtual DbSet<Items> Items { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartItem> CartItems { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Items>(entity =>
@@ -49,14 +46,6 @@ namespace MenuItems.DataAccess.EF.Context
                     .HasMaxLength(255);
 
             });
-            modelBuilder.Entity<CartItem>()
-            .HasOne(ci => ci.Item)
-            .WithMany()
-            .HasForeignKey(ci => ci.ItemId);
-
-
-
-
         }
         
     }

@@ -6,26 +6,21 @@ html {
     font-size: 14px;
     scroll-behavior: smooth;
 }
-
 @media (min-width: 768px) {
     html {
         font-size: 16px;
     }
 }
-
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
-
 html {
     position: relative;
     min-height: 100%;
 }
-
 h1, h2, h3, h4, h5, h6 {
     font-family: "Amatic SC", cursive;
 }
-
 body {
     margin-bottom: 60px;
     background-image: url('https://i.ibb.co/LhJRSj7/6bce92329045e42d1a7d336c27a19daa.jpg'); /* Specify your image path */
@@ -34,6 +29,7 @@ body {
     background-repeat: no-repeat; /* Prevent image from repeating */
     background-attachment: fixed; /* Keep image fixed while scrolling */
 }
+
 /*HOME PAGE CSS*/
 /*.home-menu {
     text-align: center;
@@ -47,18 +43,16 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
+.home-menu a:hover {
+    background-color: #333;
+}
 
-    .home-menu a:hover {
-        background-color: #333;
-    }
 .bgimg {
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 90%;
 }
-
 .home-body {
-    
 }
 h1 {
     font-size: 48px;
@@ -67,33 +61,29 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
     padding: 10px; /* Add some padding for readability */
 }
+
 .w3-display-bottomright {
     position: absolute;
     bottom: 20px;
     right: 20px;
     color: #fff;
 }
-
-
-
 .home-content {
     display: flex;
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Center horizontally */
     margin-top: 20px; /* Adjust as needed */
 }
-
 .home-optionItem {
     margin-right: 20px;
 }
-
 .home-menu {
     margin-top: 20px; /* Add spacing between heading and menu */
 }
-
 .home-optionItem a:hover {
     color: #218838;
 }
+
 /*MENU PAGE CSS*/
 .menu-image {
     width: 150px;
@@ -115,11 +105,6 @@ h1 {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-/*.menu {
-    display: none
-}*/
-
 h3 {
     font-size: 24px;
     color: #333;
@@ -174,38 +159,31 @@ button {
     border-bottom-left-radius: 1rem;
     border-top-left-radius: 1rem;
 }
-
-
 .tablink {
     flex: 1; /* Equal distribution */
 }
-
-
 .product-list {
     list-style: none;
     padding: 0;
 }
-
-    .product-list li {
-        font-size: 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border: 5px solid #ddd;
-        border-radius: 5px;
-    }
-
-
-    .delete-item:hover {
-        background-color: #c0392b;
-    }
-
+.product-list li {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 5px solid #ddd;
+    border-radius: 5px;
+}
+.delete-item:hover {
+    background-color: #c0392b;
+}
 .total-amount {
     font-size: 18px;
     font-weight: bold;
     margin-top: 20px;
 }
+
 /*ABOUT CSS*/
 .about-container {
     max-width: 980px;
@@ -215,17 +193,14 @@ button {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.about-container h1 {
+    font-size: 36px;
+    color: #fffdfd;
+    margin-bottom: 20px;
 
-    .about-container h1 {
-        font-size: 36px;
-        color: #fffdfd;
-        margin-bottom: 20px;
-    }
-
-    .about-container p {
-        font-size: 16px;
-        color: #fff;
-        line-height: 1.5;
-    }
-
-
+}
+.about-container p {
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.5;
+}
